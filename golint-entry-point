@@ -1,0 +1,8 @@
+#!/bin/ash
+
+PACKAGES=$(find /go/src -name "*.go" | grep -v "\/vendor\/" | grep -v "\/\.git\/" | sed -e 's/\/[^\/]*\.go$//g' -e 's/\/go\/src\///g' | sort -u)
+echo $PACKAGES
+
+exec /go/bin/golint $* $PACKAGES
+
+#$(find src -name vendor -prune -o -type d | grep -v \/vendor\$)
